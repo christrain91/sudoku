@@ -1,7 +1,6 @@
 import { Puzzle } from './definitions'
 import validate from './validate'
 import solve from './solve'
-import display from './display'
 
 const beginnerPuzzle: Puzzle = [
   [null, null, 3, null, null, null, 5, 2, null],
@@ -27,8 +26,22 @@ const advancedPuzzle: Puzzle = [
   [null, 2, null, 3, null, 9, 4, null, 8]
 ]
 
-validate(advancedPuzzle)
-solve(advancedPuzzle)
+const emptyPuzzle: Puzzle = [
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null]
+]
+
+validate(emptyPuzzle)
+solve(emptyPuzzle)
+
+
 
 
 
