@@ -1,12 +1,13 @@
 import { Puzzle, Coordinate, PuzzleNumber } from './definitions'
 import display from './display'
 import getValuesForPosition from './getValuesForPosition'
+import { cloneDeep } from 'lodash'
 
 export default function solve(
   puzzle: Puzzle
 ): { success: boolean; puzzle: Puzzle } {
   let finished = false
-  let workingPuzzle: Puzzle = [...puzzle]
+  let workingPuzzle: Puzzle = cloneDeep(puzzle)
 
   while (!finished) {
     finished = isFinished(workingPuzzle)
@@ -48,7 +49,6 @@ export default function solve(
       if (!finished) {
         throw new Error('Failed to solve this puzzle.')
       }
-     
     }
   }
 
