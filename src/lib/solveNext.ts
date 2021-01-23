@@ -14,8 +14,6 @@ export default function solveNext(puzzle: Puzzle): NextAnswer | null {
       )
 
       if (possibleValues.length === 0) {
-        console.log('PUZZLE: ', puzzle)
-        console.log('AT POSITION: ', boxIndex, cellIndex)
         throw new Error('Can not solve puzzle, mistakes have been made')
       }
 
