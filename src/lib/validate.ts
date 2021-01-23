@@ -1,4 +1,4 @@
-import { Puzzle } from './definitions'
+import { Puzzle } from '../definitions'
 import assert from 'assert'
 
 export default function validate (puzzle: Puzzle) : puzzle is Puzzle {

@@ -1,5 +1,5 @@
-import validateFn from './validate'
-import solveFn from './solve'
+import validateFn from './lib/validate'
+import solveFn from './lib/solve'
 
 export const validate = validateFn
 export const solve = solveFn
