@@ -1,5 +1,5 @@
 import { Puzzle } from '../definitions'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, shuffle } from 'lodash'
 import isFinished from './isFinished'
 import solveNext from './solveNext'
 import applySingleAnswer from './applySingleAnswer'
@@ -35,7 +35,7 @@ export default function solve(
 
         workingPuzzle = response
       } else {
-        for (let possibleValue of next.possibleValues) {
+        for (let possibleValue of shuffle(next.possibleValues)) {
           const workingPermutationPuzzle = applySingleAnswer(
             workingPuzzle,
             { boxIndex, cellIndex },
