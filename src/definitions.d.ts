@@ -25,13 +25,19 @@ export type Puzzle = [
   PuzzleBox
 ]
 
-export type BoxIndex = number
-export type CellIndex = number
+export type Index = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+export type BoxIndex = Index
+export type CellIndex = Index
 
 export type Position = { boxIndex: BoxIndex; cellIndex: CellIndex }
 
 export interface NextAnswer {
-  boxIndex: number
-  cellIndex: number
+  boxIndex: BoxIndex
+  cellIndex: CellIndex
   possibleValues: PuzzleNumber[]
+}
+
+export interface PositionAndValue {
+  position: Position
+  value: PuzzleValue
 }

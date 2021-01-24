@@ -1,5 +1,5 @@
 import { cloneDeep, times } from 'lodash'
-import { Puzzle, Position } from '../definitions'
+import { Puzzle, Position, Index } from '../definitions'
 import solve from './solve'
 
 export default function generate(): Puzzle {
@@ -22,7 +22,11 @@ function removePiecesFromPuzzle(puzzle: Puzzle): Puzzle {
   times(piecesToRemove, () => {
     const positions = getPositionsWithValue(workingPuzzle)
     const removeAtPosition = getRandomFromValues(positions)
-    workingPuzzle[removeAtPosition.boxIndex][removeAtPosition.cellIndex] = null
+    if (removeAtPosition) {
+      workingPuzzle[removeAtPosition.boxIndex][
+        removeAtPosition.cellIndex
+      ] = null
+    }
   })
 
   return workingPuzzle
@@ -33,7 +37,10 @@ function getPositionsWithValue(puzzle: Puzzle): Position[] {
   puzzle.forEach((box, boxIndex) => {
     box.forEach((cell, cellIndex) => {
       if (cell !== null) {
-        positions.push({ cellIndex, boxIndex })
+        positions.push({
+          cellIndex: cellIndex as Index,
+          boxIndex: boxIndex as Index
+        })
       }
     })
   })
