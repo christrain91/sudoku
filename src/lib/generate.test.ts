@@ -8,6 +8,7 @@ describe('generate', () => {
     const valid = validate(puzzle)
     const complete = isFinished(puzzle)
 
+    expect(puzzle.find((box) => box.find((cell) => cell !== null))).toBeTruthy()
     expect(valid).toBe(true)
     expect(complete).toBe(false)
   })

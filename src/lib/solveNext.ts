@@ -24,7 +24,8 @@ export default function solveNext(puzzle: Puzzle): NextAnswer | null {
     }
   }
 
-  return null
+  // If we can't make a definitive answer (because there are multiple possibilities) return the cell with the fewest possibilities (and the possible values for the cell)
+  return findBestPossibleAnswer(puzzle)
 }
 
 function solveForLinkedPositions(
@@ -82,4 +83,35 @@ function getEmptyPositions(positionValues: PositionAndValue[]): Position[] {
   return positionValues
     .filter((positionValue) => positionValue.value === null)
     .map((pv) => pv.position)
+}
+
+function findBestPossibleAnswer(puzzle: Puzzle): NextAnswer | null {
+  let possibleAnswer: NextAnswer | null = null
+
+  puzzle.forEach((box, boxIndex) => {
+    box.forEach((cell, cellIndex) => {
+      if (cell !== null) return
+
+      const cellPosition: Position = {
+        boxIndex: boxIndex as Index,
+        cellIndex: cellIndex as Index
+      }
+      const cellPossibleValues = getPossibleValuesForPosition(
+        cellPosition,
+        puzzle
+      )
+
+      if (
+        !possibleAnswer ||
+        possibleAnswer.possibleValues.length > cellPossibleValues.length
+      ) {
+        possibleAnswer = {
+          ...cellPosition,
+          possibleValues: cellPossibleValues
+        }
+      }
+    })
+  })
+
+  return possibleAnswer
 }
